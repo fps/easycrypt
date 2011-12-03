@@ -1,0 +1,2 @@
+content easycrypt chrome/content/
+overlay chrome://browser/content/browser.xul chrome://easycrypt/content/easycrypt.xul

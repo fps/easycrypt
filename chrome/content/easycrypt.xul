@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<overlay id="easycrypt" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+		<script src="chrome://easycrypt/content/easycrypt.js" />
+		<menupopup id="menu_ToolsPopup">
+			<menuitem label="Encrypt" key="easycrypt-run-key" oncommand="easycrypt_run()"/>
+		</menupopup>
+
+		<keyset>
+			<key id="easycrypt-run-key" modifiers="accel alt shift" key="L" oncommand="easycrypt_run()"/>
+		</keyset>
+
+		<popup id="contentAreaContextMenu">
+		  <menuitem id="encrypt-show" label="Show EasyCrypt" oncommand="easycrypt.show();" popup="thepanel"/>
+		</popup>
+
+		<panel id="thepanel">
+		  <hbox align="start">
+			 <image src="warning.png"/>
+			 <vbox>
+				<description value="You have 6 new messages."/>
+				<hbox>
+				  <button label="Read Mail"/>
+				  <button label="New Message"/>
+				</hbox>
+			 </vbox>
+		  </hbox>
+		</panel>
+</overlay>
+

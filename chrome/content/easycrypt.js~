@@ -1,0 +1,49 @@
+window.addEventListener("load", function() { easycrypt.init(); }, false);
+
+var easycrypt = {
+  init: function() {
+    var appcontent = document.getElementById("appcontent");   // browser
+    if(appcontent)
+      appcontent.addEventListener("DOMContentLoaded", easycrypt.onPageLoad, true);
+    var messagepane = document.getElementById("messagepane"); // mail
+    if(messagepane)
+      messagepane.addEventListener("load", function(event) { easycrypt.onPageLoad(event); }, true);
+  },
+
+  pimp_textarea: function(doc, t) {
+    var table = doc.createElement('table');
+    t.value = "bla";
+    t.parentNode.replaceChild(table, t);
+  },
+
+  onPageLoad: function(aEvent) {
+    var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
+
+    var inputfields = doc.getElementsByTagName('input');
+    for (var i = 0; i < inputfields.length; i++)
+    {
+      if (inputfields[i].type == "text")
+      {
+        inputfields[i].value = "bla";
+      }
+    }
+
+    var textareas = doc.getElementsByTagName('textarea');
+    for (var j = 0; j < textareas.length; j++) 
+    {
+      easycrypt.pimp_textarea(doc, textareas[j]);
+      textareas[j].value = "bla";
+    }
+    doc.body.innerHTML = doc.body.innerHTML.replace(/bla/g, "blub");
+  },
+
+  onPageUnload: function(aEvent) {
+    // do something
+  }
+}
+
+function easycrypt_run()
+{
+
+}
+

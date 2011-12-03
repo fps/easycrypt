@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<overlay id="easycrypt" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+		<script src="chrome://easycrypt/content/easycrypt.js" />
+		<menupopup id="menu_ToolsPopup">
+			<menuitem label="Encrypt" key="easycrypt-run-key" oncommand="easycrypt_run()"/>
+		</menupopup>
+
+		<keyset>
+			<key id="easycrypt-run-key" modifiers="accel alt shift" key="L" oncommand="easycrypt_run()"/>
+		</keyset>
+</overlay>
+
