@@ -11,16 +11,29 @@
 		</keyset>
 
 		<popup id="contentAreaContextMenu">
-		  <menuitem id="encrypt-show" label="Show EasyCrypt" oncommand="easycrypt.show()" popup="easycryptpanel">
+		  <menuitem id="encrypt-show" label="Encrypt (EasyCrypt)" oncommand="easycrypt.encrypt_show()">
+		  </menuitem>
+		</popup>
+
+		<popup id="contentAreaContextMenu">
+		  <menuitem id="decrypt-show" label="Decrypt (EasyCrypt)" oncommand="easycrypt.decrypt_show()">
 		  </menuitem>
 		</popup>
 
 
 		<hbox>
-		  <panel id="easycryptpanel" style="visibility:visible">
+		  <panel id="easycryptEncryptpanel" style="visibility:visible">
 			 <vbox align="start">
 				<textbox id="easycrypt-textfield" multiline="true"/>
 				<button id="easycrypt-button"  label="encrypt"/>
+			 </vbox>
+		  </panel>
+		</hbox>
+
+		<hbox>
+		  <panel id="easycryptDecryptpanel" style="visibility:visible">
+			 <vbox align="start">
+				<textbox id="easycrypt-cleartext-textfield" multiline="true"/>
 			 </vbox>
 		  </panel>
 		</hbox>
