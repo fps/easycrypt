@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<prefwindow
+     title="EasyCrypt Preferences"
+     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<prefpane label="EasyCrypt Preferences">
+		<preferences>
+			<preference id="pw1" name="extensions.easycrypt.pw1" type="string"/>
+			<preference id="pw2" name="extensions.easycrypt.pw2" type="string"/>
+			<preference id="pw3" name="extensions.easycrypt.pw3" type="string"/>
+			<preference id="pw4" name="extensions.easycrypt.pw4" type="string"/>
+		</preferences>
+
+		<groupbox>
+			<caption label="Settings"/>
+			<grid>
+				<columns>
+					<column flex="4"/>
+					<column flex="1"/>
+				</columns>
+				<rows>
+					<row>
+						<label control="password1" value="Password1"/>
+						<textbox id="pw1" preference="pw1"/>
+					</row>
+					<row>
+						<label control="password1" value="Password2"/>
+						<textbox id="pw2" preference="pw2"/>
+					</row>
+					<row>
+						<label control="password1" value="Password3"/>
+						<textbox id="pw3" preference="pw3"/>
+					</row>
+					<row>
+						<label control="password1" value="Password4"/>
+						<textbox id="pw4" preference="pw4"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>	
+
+	</prefpane>
+
+</prefwindow>
