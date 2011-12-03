@@ -26,31 +26,6 @@ var easycrypt = {
 		  // do something
 	 },
 
-	 getSelectedText: function(doc)
-	 {
-		  var Ausgabe = "";
-		  
-		  if (window.getSelection)
-		  {
-				Ausgabe = window.getSelection();
-				
-				if(Ausgabe == ""){
-					 // Beginn einer eventuellen Markierung ermitteln
-					 var intStart = doc.selectionStart;
-					 // Ende einer eventuellen Markierung ermitteln
-					 var intEnd = doc.selectionEnd;
-					 // Markierung
-					 Ausgabe = doc.innerHTML.substring(intStart, intEnd);
-				}
-		  }else if (document.getSelection){
-				Ausgabe = document.getSelection();
-		  }else if (document.selection){
-				Ausgabe = document.selection.createRange().text;
-		  }
-		  
-		  return Ausgabe;
-	 },
-
 	 xorencrypt: function (str, pwd) {
 		  if(pwd == null || pwd.length <= 0) {
 				alert("Please enter a password with which to encrypt the message.");
