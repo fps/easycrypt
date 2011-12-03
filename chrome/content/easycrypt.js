@@ -36,19 +36,18 @@ var easycrypt = {
     // do something
   },
 
-  show: function() {
-    window.document.getElementById("thepanel").popup();
+  show: function(e) {
+    document.popupNode.value = "ewfwefhwef";
+    document.getElementById("easycryptpanel").openPopup(document.getElementById("navigator-toolbox"), "after_start");
+    var b = document.getElementById("easycrypt-button");
+    b.removeEventListener("click", easycrypt.encrypt, false);
+    b.addEventListener("click", easycrypt.encrypt, false);
     // var doc = aEvent.originalTarget;
-    var div = content.document.getElementById("easycryptpopupdiv");
-    if (div.style.display == 'none') {
-      div.style.display = '';
-      div.style.position = "relative";
-      div.style.targetTop = "0";
-      div.style.targetLeft = "0";
-   } else {
-     div.style.display = 'none';
-   }
 
+  },
+
+  encrypt: function(e) {
+    alert("bla");
   }
 }
 

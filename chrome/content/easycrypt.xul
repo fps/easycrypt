@@ -11,20 +11,19 @@
 		</keyset>
 
 		<popup id="contentAreaContextMenu">
-		  <menuitem id="encrypt-show" label="Show EasyCrypt" oncommand="easycrypt.show();" popup="thepanel"/>
+		  <menuitem id="encrypt-show" label="Show EasyCrypt" oncommand="easycrypt.show()" popup="easycryptpanel">
+		  </menuitem>
 		</popup>
 
-		<panel id="thepanel">
-		  <hbox align="start">
-			 <image src="warning.png"/>
-			 <vbox>
-				<description value="You have 6 new messages."/>
-				<hbox>
-				  <button label="Read Mail"/>
-				  <button label="New Message"/>
-				</hbox>
+
+		<hbox>
+		  <panel id="easycryptpanel" style="visibility:visible">
+			 <vbox align="start">
+				<textbox id="easycrypt-textfield" multiline="true"/>
+				<button id="easycrypt-button"  label="encrypt"/>
 			 </vbox>
-		  </hbox>
-		</panel>
+		  </panel>
+		</hbox>
+
 </overlay>
 
