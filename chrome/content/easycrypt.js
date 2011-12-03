@@ -17,7 +17,16 @@ var easycrypt = {
     if (win.frameElement) return;
     //if (doc.nodeName == "#document") return;
 
-    doc.body.innerHTML = doc.body.innerHTML.replace(/bla/g, "blub");
+    var matches = doc.body.innerHTML.match(/easycrypt\[\[\[.*?\]\]\]/g);
+    var cyphers = matches;
+    // alert(matches);
+    for (i = 0; i < matches.length; i++) {
+      cyphers[i] = matches[i].substring(12, matches[i].length - 3);
+      doc.body.innerHTML = doc.body.innerHTML.replace(cyphers[i], easycrypt.rot13(cyphers[i]));
+    }
+    // alert(cyphers);
+
+
   },
 
   onPageUnload: function(aEvent) {
@@ -60,7 +69,7 @@ var easycrypt = {
     var cleartext = document.getElementById("easycrypt-textfield").value;
 
     // TODO: encrypt :D
-    panel.textthingy.value = "rot13{" + easycrypt.rot13(cleartext) +"}";   
+    panel.textthingy.value = "easycrypt[[[" + easycrypt.rot13(cleartext) +"]]]";   
   }
 }
 
