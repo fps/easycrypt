@@ -1,0 +1,8 @@
+EasyCrypt - A simplistic website - agnostic encryption/decryption extension
+
+Usage:
+
+Right click on a webpage (for example in a textarea) and select Encrypt (EasyCrypt) from the context menu to encrypt a portion of text.This should popup a panel where you can enter your cleartext and press "encrypt" to get the encrypted text in the lower textbos or "encrypt and insert" to insert the encrypted text into the original textarea where you right-clicked.
+
+
+To decrypt some text that shows in a webpage, select the encrypted text and right-click and select Decrypt (EasyCrypt). This should popup a panel showing the decrypted text..
