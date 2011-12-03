@@ -2,6 +2,7 @@
 <overlay id="easycrypt" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 		<script src="chrome://easycrypt/content/easycrypt.js" />
+		<script src="chrome://easycrypt/content/crypto-js/crypto-sha1-hmac-pbkdf2-blockmodes-aes/crypto-sha1-hmac-pbkdf2-blockmodes-aes.js"/>
 
 		<keyset>
 			<key id="easycrypt-run-key" modifiers="accel alt shift" key="L" oncommand="easycrypt.encrypt_show()"/>

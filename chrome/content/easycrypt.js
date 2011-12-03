@@ -318,7 +318,7 @@ var easycrypt = {
 		  // alert(matches);
 		  for (i = 0; i < matches.length; i++) {
 				cyphers[i] = matches[i].substring(12, matches[i].length - 3);
-				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", easycrypt.xordecrypt(cyphers[i], easycrypt.SHA1(prefManager.getCharPref("extensions.easycrypt.pw1"))));
+				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", Crypto.AES.decrypt(cyphers[i], prefManager.getCharPref("extensions.easycrypt.pw1")));
 		  }
 		  document.getElementById("easycrypt-cleartext-textfield").value = text;
 	 },
@@ -330,7 +330,7 @@ var easycrypt = {
 		  // document.getElementById("easycrypt-cypher-textfield").value = "ugh";
 		  // TODO: encrypt :D
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-		  document.getElementById("easycrypt-cypher-textfield").value = "easycrypt[[[" + easycrypt.xorencrypt(cleartext, easycrypt.SHA1(prefManager.getCharPref("extensions.easycrypt.pw1"))) + "]]]";   
+		  document.getElementById("easycrypt-cypher-textfield").value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, prefManager.getCharPref("extensions.easycrypt.pw1")) + "]]]";   
 	 },
 
 	 encrypt_and_insert: function(e) {
@@ -339,7 +339,7 @@ var easycrypt = {
 
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 		  // TODO: encrypt :D
-		  panel.textthingy.value = "easycrypt[[[" + easycrypt.xorencrypt(cleartext, easycrypt.SHA1(prefManager.getCharPref("extensions.easycrypt.pw1"))) +"]]]";   
+		  panel.textthingy.value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, prefManager.getCharPref("extensions.easycrypt.pw1")) + "]]]";   
 	 }
 }
 
