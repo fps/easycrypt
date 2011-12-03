@@ -143,7 +143,7 @@ var easycrypt = {
 	 },
 
 	 encrypt_show: function(e) {
-		  var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
+		  // var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
 		  var panel =  document.getElementById("easycryptEncryptpanel");
 		  panel.openPopup(document.getElementById("navigator-toolbox"), "after_start");
 		  panel.textthingy = document.popupNode;
@@ -151,6 +151,10 @@ var easycrypt = {
 		  var b = document.getElementById("easycrypt-button");
 		  b.removeEventListener("click", easycrypt.encrypt, false);
 		  b.addEventListener("click", easycrypt.encrypt, false);
+
+		  var b2 = document.getElementById("easycrypt-insert-button");
+		  b2.removeEventListener("click", easycrypt.encrypt_and_insert, false);
+		  b2.addEventListener("click", easycrypt.encrypt_and_insert, false);
 		  // var doc = aEvent.originalTarget;
 
 	 },
@@ -169,14 +173,21 @@ var easycrypt = {
 		  // alert(matches);
 		  for (i = 0; i < matches.length; i++) {
 				cyphers[i] = matches[i].substring(12, matches[i].length - 3);
-				text = text.replace(cyphers[i], easycrypt.xordecrypt(cyphers[i], "blaa"));
+				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", easycrypt.xordecrypt(cyphers[i], "blaa"));
 		  }
 		  document.getElementById("easycrypt-cleartext-textfield").value = text;
 	 },
 
-
 	 encrypt: function(e) {
-		  var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
+		  var panel =  document.getElementById("easycryptEncryptpanel");
+		  var cleartext = document.getElementById("easycrypt-textfield").value;
+		  // alert("foo");
+		  // document.getElementById("easycrypt-cypher-textfield").value = "ugh";
+		  // TODO: encrypt :D
+		  document.getElementById("easycrypt-cypher-textfield").value = "easycrypt[[[" + easycrypt.xorencrypt(cleartext, "blaa") + "]]]";   
+	 },
+
+	 encrypt_and_insert: function(e) {
 		  var panel =  document.getElementById("easycryptEncryptpanel");
 		  var cleartext = document.getElementById("easycrypt-textfield").value;
 

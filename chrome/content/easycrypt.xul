@@ -2,12 +2,9 @@
 <overlay id="easycrypt" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 		<script src="chrome://easycrypt/content/easycrypt.js" />
-		<menupopup id="menu_ToolsPopup">
-			<menuitem label="Encrypt" key="easycrypt-run-key" oncommand="easycrypt_run()"/>
-		</menupopup>
 
 		<keyset>
-			<key id="easycrypt-run-key" modifiers="accel alt shift" key="L" oncommand="easycrypt_run()"/>
+			<key id="easycrypt-run-key" modifiers="accel alt shift" key="L" oncommand="easycrypt.encrypt_show()"/>
 		</keyset>
 
 		<popup id="contentAreaContextMenu">
@@ -25,7 +22,9 @@
 		  <panel id="easycryptEncryptpanel" style="visibility:visible">
 			 <vbox align="start">
 				<textbox id="easycrypt-textfield" multiline="true"/>
+				<textbox id="easycrypt-cypher-textfield" multiline="true"/>
 				<button id="easycrypt-button"  label="encrypt"/>
+				<button id="easycrypt-insert-button"  label="encrypt and insert"/>
 			 </vbox>
 		  </panel>
 		</hbox>
