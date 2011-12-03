@@ -145,10 +145,12 @@ var easycrypt = {
 
 		  var matches = text.match(/easycrypt\[\[\[.*?\]\]\]/g);
 		  var cyphers = matches;
+
+		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 		  // alert(matches);
 		  for (i = 0; i < matches.length; i++) {
 				cyphers[i] = matches[i].substring(12, matches[i].length - 3);
-				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", easycrypt.xordecrypt(cyphers[i], "blaa"));
+				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", easycrypt.xordecrypt(cyphers[i], prefManager.getCharPref("extensions.easycrypt.pw1")));
 		  }
 		  document.getElementById("easycrypt-cleartext-textfield").value = text;
 	 },
@@ -159,15 +161,17 @@ var easycrypt = {
 		  // alert("foo");
 		  // document.getElementById("easycrypt-cypher-textfield").value = "ugh";
 		  // TODO: encrypt :D
-		  document.getElementById("easycrypt-cypher-textfield").value = "easycrypt[[[" + easycrypt.xorencrypt(cleartext, "blaa") + "]]]";   
+		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+		  document.getElementById("easycrypt-cypher-textfield").value = "easycrypt[[[" + easycrypt.xorencrypt(cleartext, prefManager.getCharPref("extensions.easycrypt.pw1")) + "]]]";   
 	 },
 
 	 encrypt_and_insert: function(e) {
 		  var panel =  document.getElementById("easycryptEncryptpanel");
 		  var cleartext = document.getElementById("easycrypt-textfield").value;
 
+		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 		  // TODO: encrypt :D
-		  panel.textthingy.value = "easycrypt[[[" + easycrypt.xorencrypt(cleartext, "blaa") +"]]]";   
+		  panel.textthingy.value = "easycrypt[[[" + easycrypt.xorencrypt(cleartext, prefManager.getCharPref("extensions.easycrypt.pw1")) +"]]]";   
 	 }
 }
 
