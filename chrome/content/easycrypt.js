@@ -17,18 +17,6 @@ var easycrypt = {
     if (win.frameElement) return;
     //if (doc.nodeName == "#document") return;
 
-    var div = doc.createElement("div");
-    div.id = "easycryptpopupdiv";
-    div.style.display = 'none';
-
-    var cleartext = doc.createElement("textarea");
-    cleartext.id = "easycryptcleartext";
-    cleartext.rows = "5";
-    cleartext.columns = "60";
-    div.appendChild(cleartext);
-
-    doc.body.appendChild(div);
-
     doc.body.innerHTML = doc.body.innerHTML.replace(/bla/g, "blub");
   },
 
@@ -36,9 +24,30 @@ var easycrypt = {
     // do something
   },
 
+  rot13: function(text) {
+    var keycode	= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var textrot	= new String();
+
+	for(var i = 0; i < text.length; i++)
+	{
+		var codechar = text.substring(i, i + 1);
+		var pos = keycode.indexOf(codechar.toUpperCase());
+
+		if(pos >= 0)
+		{
+			pos = (pos + keycode.length / 2) % keycode.length;
+			codechar = (codechar == codechar.toUpperCase()) ? keycode.substring(pos, pos + 1) : keycode.substring(pos, pos + 1).toLowerCase();
+		}
+		textrot	= textrot + codechar;
+	}
+   return textrot;
+  },
+
   show: function(e) {
-    document.popupNode.value = "ewfwefhwef";
-    document.getElementById("easycryptpanel").openPopup(document.getElementById("navigator-toolbox"), "after_start");
+    var panel =  document.getElementById("easycryptpanel");
+    panel.openPopup(document.getElementById("navigator-toolbox"), "after_start");
+    panel.textthingy = document.popupNode;
+
     var b = document.getElementById("easycrypt-button");
     b.removeEventListener("click", easycrypt.encrypt, false);
     b.addEventListener("click", easycrypt.encrypt, false);
@@ -47,7 +56,11 @@ var easycrypt = {
   },
 
   encrypt: function(e) {
-    alert("bla");
+    var panel =  document.getElementById("easycryptpanel");
+    var cleartext = document.getElementById("easycrypt-textfield").value;
+
+    // TODO: encrypt :D
+    panel.textthingy.value = "rot13{" + easycrypt.rot13(cleartext) +"}";   
   }
 }
 
