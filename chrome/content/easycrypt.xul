@@ -22,10 +22,20 @@
 		<hbox>
 		  <panel id="easycryptEncryptpanel" style="visibility:visible">
 			 <vbox align="start">
-				<textbox id="easycrypt-textfield" multiline="true"/>
-				<textbox id="easycrypt-cypher-textfield" multiline="true"/>
-				<button id="easycrypt-button"  label="encrypt"/>
-				<button id="easycrypt-insert-button"  label="encrypt and insert"/>
+				<textbox id="easycrypt-textfield" multiline="true" rows="10" cols="80"/>
+				<textbox id="easycrypt-cypher-textfield" multiline="true" cols="80"/>
+				<hbox>
+				  <button id="easycrypt-button"  label="Encrypt"/>
+				  <button id="easycrypt-insert-button"  label="Encrypt and Insert"/>
+				  <menulist>
+					 <menupopup>
+						<menuitem label="Password1" value="1"/>
+						<menuitem label="Password2" value="2"/>
+						<menuitem label="Password3" value="3"/>
+						<menuitem label="Password4" value="4"/>
+					 </menupopup>
+				  </menulist>
+				</hbox>
 			 </vbox>
 		  </panel>
 		</hbox>
@@ -33,7 +43,7 @@
 		<hbox>
 		  <panel id="easycryptDecryptpanel" style="visibility:visible">
 			 <vbox align="start">
-				<textbox id="easycrypt-cleartext-textfield" multiline="true"/>
+				<textbox id="easycrypt-cleartext-textfield" multiline="true" rows="10" cols="80"/>
 			 </vbox>
 		  </panel>
 		</hbox>
