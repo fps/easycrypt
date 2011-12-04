@@ -126,11 +126,15 @@ var easycrypt = {
 
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 		  // alert(matches);
-		  for (i = 0; i < matches.length; i++) {
-				cyphers[i] = matches[i].substring(12, matches[i].length - 3);
-				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", Crypto.AES.decrypt(cyphers[i], document.getElementById("easycrypt-password-textfield").value));
+		  try {
+		  		  for (i = 0; i < matches.length; i++) {
+				  		cyphers[i] = matches[i].substring(12, matches[i].length - 3);
+						text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", Crypto.AES.decrypt(cyphers[i], document.getElementById("easycrypt-password-textfield").value));
+				  }
+				document.getElementById("easycrypt-clear-textfield").value = text;
+		  } catch (e) {
+				document.getElementById("easycrypt-clear-textfield").value = "Decryption failed for some reason. Wrong password? Broken text?";
 		  }
-		  document.getElementById("easycrypt-clear-textfield").value = text;
 	 },
 
 	 encrypt: function() {
@@ -140,7 +144,11 @@ var easycrypt = {
 		  // document.getElementById("easycrypt-cypher-textfield").value = "ugh";
 		  // TODO: encrypt :D
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-		  document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
+		  try {
+				document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
+		  } catch(e) {
+				document.getElementById("easycrypt-crypt-textfield").value = "Encryption failed for some reason";
+		  }
 	 },
 
 	 encrypt_and_insert: function(e) {
