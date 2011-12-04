@@ -133,7 +133,7 @@ var easycrypt = {
 				  }
 				document.getElementById("easycrypt-clear-textfield").value = text;
 		  } catch (e) {
-				document.getElementById("easycrypt-clear-textfield").value = "Decryption failed for some reason. Wrong password? Broken text?";
+				document.getElementById("easycrypt-clear-textfield").value = "Decryption failed for some reason. Wrong password? Broken text? Exception: " + e;
 		  }
 	 },
 
@@ -147,7 +147,7 @@ var easycrypt = {
 		  try {
 				document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
 		  } catch(e) {
-				document.getElementById("easycrypt-crypt-textfield").value = "Encryption failed for some reason";
+				document.getElementById("easycrypt-crypt-textfield").value = "Encryption failed for some reason. Exception: " + e;
 		  }
 	 },
 
