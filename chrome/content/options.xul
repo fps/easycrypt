@@ -22,6 +22,10 @@
 				</columns>
 				<rows>
 					<row>
+						<label control="storepasswds" value="Store Passwords"/>
+						<checkbox id="storepasswords" preference="store_passwords"/>
+					</row>
+					<row>
 						<label control="password1" value="Password1"/>
 						<textbox id="pw1" preference="pw1"/>
 					</row>
