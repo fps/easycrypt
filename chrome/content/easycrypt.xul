@@ -25,7 +25,7 @@
 
 
 		<hbox>
-		  <panel id="easycryptEncryptpanel">
+		  <panel id="easycryptEncryptpanel" backdrag="true">
 			 <vbox align="start">
 				<textbox id="easycrypt-clear-textfield" multiline="true" rows="10" cols="100" placeholder="Enter plain text here if you are paranoid. If you are not, use a textfield on the website you're using, select the text and select Encrypt (EasyCrypt) from the context menu."/>
 				<textbox id="easycrypt-crypt-textfield" multiline="true" cols="100" placeholder="Enter Encrypted text here easycrypt[[[...]]]. Or select some text in the webpage you're looking at and select Decrypt (EasyCrypt) from the context menu."/>
