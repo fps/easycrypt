@@ -27,6 +27,73 @@ var easycrypt = {
 		  var panel =  document.getElementById("easycryptEncryptpanel");
 		  panel.openPopup(document.getElementById("navigator-toolbox"), "after_start");
 		  panel.textthingy = document.popupNode;
+
+		  var list = document.getElementById("easycrypt-password-list")
+		  var username = "Password" + list.value;
+
+		  var nsloginManager = Components.classes["@mozilla.org/login-manager;1"].getService(Components.interfaces.nsILoginManager);
+		  
+		  var nsLoginInfo = new Components.Constructor("@mozilla.org/login-manager/loginInfo;1", Components.interfaces.nsILoginInfo, "init");
+		  
+		  var hostname = 'chrome://easycrypt';
+		  var formSubmitURL = null;
+		  var httprealm = 'Password Storage';
+		  var retrievedpassword;
+
+		  var logins = nsloginManager.findLogins({}, hostname, formSubmitURL, httprealm);
+		  var results = [];
+		  for (var i = 0; i < logins.length; i++) {
+				if (logins[i].username == username) 
+					 results.push(i);
+		  }
+
+		  if (results.length != 0) {
+				// alert(logins);
+				document.getElementById("easycrypt-password-textfield").value = logins[results[0]].password;
+		  }
+	 },
+
+	 password_selected: function() {
+
+		  easycrypt.easycrypt_show();
+		  // var extLoginInfo = new nsLoginInfo(hostname, formSubmitURL, httprealm, username, '123', "", "");
+	 },
+
+	 store_password: function() {
+		  var list = document.getElementById("easycrypt-password-list")
+		  var username = "Password" + list.value;
+
+		  var nsloginManager = Components.classes["@mozilla.org/login-manager;1"].getService(Components.interfaces.nsILoginManager);
+		  
+		  var nsLoginInfo = new Components.Constructor("@mozilla.org/login-manager/loginInfo;1", Components.interfaces.nsILoginInfo, "init");
+		  
+		  var hostname = 'chrome://easycrypt';
+		  var formSubmitURL = null;
+		  var httprealm = 'Password Storage';
+		  var retrievedpassword;
+
+		  var logins = nsloginManager.findLogins({}, hostname, formSubmitURL, httprealm);
+		  var results = [];
+		  for (var i = 0; i < logins.length; i++) {
+				if (logins[i].username == username) 
+					 results.push(i);
+		  }
+
+		  var extLoginInfo = new nsLoginInfo(hostname, formSubmitURL, httprealm, username, document.getElementById("easycrypt-password-textfield").value, "", "");
+
+		  if (results.length == 0) {
+				nsloginManager.addLogin(extLoginInfo);
+		  }
+
+		  if (results.length == 1) {
+				// alert(logins);
+				// document.getElementById("easycrypt-password-textfield").value = logins[results[0]].password;
+
+				// store login details first time through
+				// var setlogin = promptserv.confirm(null, "Store Login for 'bob' ?", "If you have already stored the login choose Cancel");
+				nsloginManager.removeLogin(logins[results[0]]);
+				nsloginManager.addLogin(extLoginInfo);
+		  }
 	 },
 
 	 encrypt_show: function(e) {
@@ -61,7 +128,7 @@ var easycrypt = {
 		  // alert(matches);
 		  for (i = 0; i < matches.length; i++) {
 				cyphers[i] = matches[i].substring(12, matches[i].length - 3);
-				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", Crypto.AES.decrypt(cyphers[i], prefManager.getCharPref("extensions.easycrypt.pw1")));
+				text = text.replace("easycrypt[[[" + cyphers[i] + "]]]", Crypto.AES.decrypt(cyphers[i], document.getElementById("easycrypt-password-textfield").value));
 		  }
 		  document.getElementById("easycrypt-clear-textfield").value = text;
 	 },
@@ -73,7 +140,7 @@ var easycrypt = {
 		  // document.getElementById("easycrypt-cypher-textfield").value = "ugh";
 		  // TODO: encrypt :D
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-		  document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, prefManager.getCharPref("extensions.easycrypt.pw1")) + "]]]";   
+		  document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
 	 },
 
 	 encrypt_and_insert: function(e) {
@@ -82,7 +149,7 @@ var easycrypt = {
 
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 		  // TODO: encrypt :D
-		  panel.textthingy.value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, prefManager.getCharPref("extensions.easycrypt.pw1")) + "]]]";   
+		  panel.textthingy.value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
 	 }
 }
 
