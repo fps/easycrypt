@@ -285,8 +285,7 @@ var easycrypt = {
 		  return textrot;
 	 },
 
-	 encrypt_show: function(e) {
-		  // var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
+	 easycrypt_show: function() {
 		  var panel =  document.getElementById("easycryptEncryptpanel");
 		  panel.openPopup(document.getElementById("navigator-toolbox"), "after_start");
 		  panel.textthingy = document.popupNode;
@@ -303,19 +302,23 @@ var easycrypt = {
 		  b2.removeEventListener("click", easycrypt.encrypt_and_insert, false);
 		  b2.addEventListener("click", easycrypt.encrypt_and_insert, false);
 		  // var doc = aEvent.originalTarget;
+		  
+	 },
+
+	 encrypt_show: function(e) {
+		  // var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
+		  easycrypt.easycrypt_show();
 
 		  var focusedWindow = document.commandDispatcher.focusedWindow;
 		  var text = focusedWindow.getSelection().toString();
 		  document.getElementById("easycrypt-clear-textfield").value = text;
 
 		  easycrypt.encrypt();
-
 	 },
 
 	 decrypt_show: function(e) {
-		  var panel =  document.getElementById("easycryptEncryptpanel");
-		  panel.openPopup(document.getElementById("navigator-toolbox"), "after_start");
-		  panel.textthingy = document.popupNode;
+		  easycrypt.easycrypt_show();
+
 		  var doc = document.popupNode;
 		  var focusedWindow = document.commandDispatcher.focusedWindow;
 		  var text = focusedWindow.getSelection().toString();

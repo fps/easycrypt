@@ -9,6 +9,11 @@
 		</keyset>
 
 		<popup id="contentAreaContextMenu">
+		  <menuitem id="easycrypt-show" label="EasyCrypt" oncommand="easycrypt.easycrypt_show()">
+		  </menuitem>
+		</popup>
+
+		<popup id="contentAreaContextMenu">
 		  <menuitem id="encrypt-show" label="Encrypt (EasyCrypt)" oncommand="easycrypt.encrypt_show()">
 		  </menuitem>
 		</popup>
@@ -20,7 +25,7 @@
 
 
 		<hbox>
-		  <panel id="easycryptEncryptpanel" style="visibility:visible">
+		  <panel id="easycryptEncryptpanel" style="visibility:visible -moz-appearance:none">
 			 <vbox align="start">
 				<textbox id="easycrypt-clear-textfield" multiline="true" rows="10" cols="80" placeholder="Enter plain text here if you are paranoid. If you are not, use a textfield on the website you're using, select the text and select Encrypt (EasyCrypt) from the context menu."/>
 				<textbox id="easycrypt-crypt-textfield" multiline="true" cols="80" placeholder="Enter Encrypted text here easycrypt[[[...]]]"/>
@@ -28,7 +33,7 @@
 				  <button id="easycrypt-encrypt-button"  label="Encrypt"/>
 				  <button id="easycrypt-encrypt-and-insert-button"  label="Encrypt and Insert"/>
 				  <button id="easycrypt-decrypt-button"  label="Decrypt"/>
-				  <textbox id="easycrypt-password-textfield"/>
+				  <textbox id="easycrypt-password-textfield" type="password"/>
 				  <menulist>
 					 <menupopup>
 						<menuitem label="Password1" value="1"/>
