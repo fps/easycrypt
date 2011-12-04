@@ -24,7 +24,7 @@
 		</popup>
 
 
-		<hbox>
+		<box>
 		  <panel id="easycryptEncryptpanel" backdrag="true">
 			 <vbox align="start">
 				<textbox id="easycrypt-clear-textfield" multiline="true" rows="10" cols="100" placeholder="Enter plain text here if you are paranoid. If you are not, use a textfield on the website you're using, select the text and select Encrypt (EasyCrypt) from the context menu."/>
@@ -50,7 +50,7 @@
 				</hbox>
 			 </vbox>
 		  </panel>
-		</hbox>
+		</box>
 
 		<hbox>
 		  <panel id="easycryptDecryptpanel" style="visibility:visible">
