@@ -28,11 +28,11 @@
 		  <panel id="easycryptEncryptpanel" style="visibility:visible -moz-appearance:none">
 			 <vbox align="start">
 				<textbox id="easycrypt-clear-textfield" multiline="true" rows="10" cols="80" placeholder="Enter plain text here if you are paranoid. If you are not, use a textfield on the website you're using, select the text and select Encrypt (EasyCrypt) from the context menu."/>
-				<textbox id="easycrypt-crypt-textfield" multiline="true" cols="80" placeholder="Enter Encrypted text here easycrypt[[[...]]]"/>
+				<textbox id="easycrypt-crypt-textfield" multiline="true" cols="80" placeholder="Enter Encrypted text here easycrypt[[[...]]]. Or select some text in the webpage you're looking at and select Decrypt (EasyCrypt) from the context menu."/>
 				<hbox>
-				  <button id="easycrypt-encrypt-button"  label="Encrypt"/>
-				  <button id="easycrypt-encrypt-and-insert-button"  label="Encrypt and Insert"/>
-				  <button id="easycrypt-decrypt-button"  label="Decrypt"/>
+				  <button id="easycrypt-encrypt-button"  label="Encrypt" oncommand="easycrypt.encrypt()"/>
+				  <button id="easycrypt-encrypt-and-insert-button"  label="Encrypt and Insert" oncommand="easycrypt.encrypt_and_insert()"/>
+				  <button id="easycrypt-decrypt-button"  label="Decrypt" oncommand="easycrypt.decrypt()"/>
 				  <textbox id="easycrypt-password-textfield" type="password"/>
 				  <menulist>
 					 <menupopup>

@@ -15,11 +15,7 @@ var easycrypt = {
 		  var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
 		  var win = doc.defaultView;
 		  if (win.frameElement) return;
-		  //if (doc.nodeName == "#document") return;
-
-		  // alert(cyphers);
-
-
+		  //! Todo: popup little textfields over easycrypt[[[...]]] found in the page and decrypt them with the current password
 	 },
 
 	 onPageUnload: function(aEvent) {
@@ -31,20 +27,6 @@ var easycrypt = {
 		  var panel =  document.getElementById("easycryptEncryptpanel");
 		  panel.openPopup(document.getElementById("navigator-toolbox"), "after_start");
 		  panel.textthingy = document.popupNode;
-
-		  var b = document.getElementById("easycrypt-encrypt-button");
-		  b.removeEventListener("click", easycrypt.encrypt, false);
-		  b.addEventListener("click", easycrypt.encrypt, false);
-
-		  var b3 = document.getElementById("easycrypt-decrypt-button");
-		  b3.removeEventListener("click", easycrypt.decrypt, false);
-		  b3.addEventListener("click", easycrypt.decrypt, false);
-
-		  var b2 = document.getElementById("easycrypt-encrypt-and-insert-button");
-		  b2.removeEventListener("click", easycrypt.encrypt_and_insert, false);
-		  b2.addEventListener("click", easycrypt.encrypt_and_insert, false);
-		  // var doc = aEvent.originalTarget;
-		  
 	 },
 
 	 encrypt_show: function(e) {
