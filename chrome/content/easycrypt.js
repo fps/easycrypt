@@ -2,24 +2,12 @@ window.addEventListener("load", function() { easycrypt.init(); }, false);
 
 var easycrypt = {
 	 init: function() {
-		  var appcontent = document.getElementById("appcontent");   // browser
-		  if(appcontent)
-				appcontent.addEventListener("DOMContentLoaded", easycrypt.onPageLoad, true);
-		  var messagepane = document.getElementById("messagepane"); // mail
-		  if(messagepane)
-				messagepane.addEventListener("load", function(event) { easycrypt.onPageLoad(event); }, true);
-	 },
+		  this.cryptojs = null;
 
+		  var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
+            .getService(Components.interfaces.mozIJSSubScriptLoader);
+		  loader.loadSubScript("resource://cryptojs/crypto-sha1-hmac-pbkdf2-blockmodes-aes/crypto-sha1-hmac-pbkdf2-blockmodes-aes.js", this.cryptojs);
 
-	 onPageLoad: function(aEvent) {
-		  var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
-		  var win = doc.defaultView;
-		  if (win.frameElement) return;
-		  //! Todo: popup little textfields over easycrypt[[[...]]] found in the page and decrypt them with the current password
-	 },
-
-	 onPageUnload: function(aEvent) {
-		  // do something
 	 },
 
 
@@ -145,7 +133,7 @@ var easycrypt = {
 		  // TODO: encrypt :D
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 		  try {
-				document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
+				document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + this.cryptojs.Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
 		  } catch(e) {
 				document.getElementById("easycrypt-crypt-textfield").value = "Encryption failed for some reason. Exception: " + e;
 		  }
