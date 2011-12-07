@@ -1,5 +1,3 @@
 content   easycrypt chrome/content/
 resource  cryptojs chrome://easycrypt/content/crypto-js/
 overlay   chrome://browser/content/browser.xul chrome://easycrypt/content/easycrypt.xul
-skin	    easycrypt classic/1.0 skin/
-style     chrome://browser/content/browser.xul chrome://easycrypt/skin/easycrypt.css
