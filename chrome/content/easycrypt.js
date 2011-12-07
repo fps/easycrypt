@@ -2,12 +2,13 @@ window.addEventListener("load", function() { easycrypt.init(); }, false);
 
 var easycrypt = {
 	 init: function() {
-		  this.cryptojs = null;
-
+		  this.crypto = {};
+		  Components.utils.import("resource://cryptojs/crypto-sha1-hmac-pbkdf2-blockmodes-aes/crypto-sha1-hmac-pbkdf2-blockmodes-aes.js", this.crypto);
+	 /*
 		  var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
             .getService(Components.interfaces.mozIJSSubScriptLoader);
-		  loader.loadSubScript("resource://cryptojs/crypto-sha1-hmac-pbkdf2-blockmodes-aes/crypto-sha1-hmac-pbkdf2-blockmodes-aes.js", this.cryptojs);
-
+		  this.cryptojs = loader.loadSubScript("resource://cryptojs/crypto-sha1-hmac-pbkdf2-blockmodes-aes/crypto-sha1-hmac-pbkdf2-blockmodes-aes.js");
+	 */
 	 },
 
 
@@ -133,7 +134,7 @@ var easycrypt = {
 		  // TODO: encrypt :D
 		  var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 		  try {
-				document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + this.cryptojs.Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
+				document.getElementById("easycrypt-crypt-textfield").value = "easycrypt[[[" + easycrypt.crypto.Crypto.AES.encrypt(cleartext, document.getElementById("easycrypt-password-textfield").value) + "]]]";   
 		  } catch(e) {
 				document.getElementById("easycrypt-crypt-textfield").value = "Encryption failed for some reason. Exception: " + e;
 		  }
